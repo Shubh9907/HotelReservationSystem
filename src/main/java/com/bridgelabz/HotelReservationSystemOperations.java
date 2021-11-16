@@ -21,23 +21,30 @@ public class HotelReservationSystemOperations {
     }
 
     /*
-    Method to find the cheapest hotel in a given date range
+    Method to find cheapest hotel in a given date range
      */
-    public String findCheapestHotel(String customerType, String checkInDate, String checkOutDate) throws ParseException , HotelReservationExceptions , NullPointerException {
-        final String DATE_PATTERN = "^[0-9]{2}[/][0-9]{2}[/][0-9]{4}$";
+    public String findCheapestHotel() throws ParseException , HotelReservationExceptions , NullPointerException {
+        final String DATE_PATTERN = "^[0-2][0-9][/][0-1][0-2][/][0-9]{4}$"; // Regex Pattern for validation of dates
         Date inDate = null;
         Date outDate = null;
         int bestRates = 0;
-        boolean check = true;
-
         Hotels cheapest = hotelList.get(0);
 
+        System.out.println("Enter 1 for Regular Customers\nEnter 2 for Rewarded Customers");
+        int customerType = scan.nextInt();
+        System.out.println("Enter Check in date (e.g. dd/mm/yy)");
+        String checkInDate = scan.next();
+        System.out.println("Enter Check Out date (e.g. dd/mm/yy)");
+        String checkOutDate = scan.next();
+
+        if (Pattern.matches(DATE_PATTERN, checkInDate) && Pattern.matches(DATE_PATTERN, checkOutDate)) {
+            inDate = new SimpleDateFormat("dd/MM/yy").parse(checkInDate);
+            outDate = new SimpleDateFormat("dd/MM/yy").parse(checkOutDate);
+        }
+        boolean check = true;
+
         try {
-            if (Pattern.matches(DATE_PATTERN, checkInDate) && Pattern.matches(DATE_PATTERN, checkOutDate)) {
-                inDate = new SimpleDateFormat("dd/MM/yy").parse(checkInDate);
-                outDate = new SimpleDateFormat("dd/MM/yy").parse(checkOutDate);
-            }
-            if (customerType.equalsIgnoreCase("REGULAR")) {
+            if (customerType == 1) {
                 if (inDate.getDay() == 6 || inDate.getDay() == 7) {
                     for (Hotels hotels : hotelList) {
                         if (cheapest.getRegularWeekendRates() > hotels.getRegularWeekendRates()) {
@@ -53,7 +60,7 @@ public class HotelReservationSystemOperations {
                         }
                     }
                 }
-            } else if (customerType.equalsIgnoreCase("Rewarded")) {
+            } else if (customerType == 2) {
                 if (inDate.getDay() == 6 || inDate.getDay() == 7) {
                     for (Hotels hotels : hotelList) {
                         if (cheapest.getRewardedWeekendRates() > hotels.getRewardedWeekendRates()) {
@@ -72,15 +79,15 @@ public class HotelReservationSystemOperations {
             } else {
                 System.out.println("Please Enter a valid Customer Type, Enter Again");
                 check = false;
-                findCheapestHotel(customerType, checkInDate, checkOutDate);
+                findCheapestHotel();
             }
             if (check == true) {
                 System.out.println("The Cheapest hotel is:-\n" + cheapest.toString());
                 System.out.println("Best Rates for you is- " + bestRates);
             }
         }catch (NullPointerException e) {
-        System.out.println("You Entered an invalid date");
-    }
+            System.out.println("Please Enter valid dates");
+        }
         return cheapest.getHotelName();
     }
 }
