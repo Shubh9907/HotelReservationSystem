@@ -1,15 +1,21 @@
 package com.bridgelabz;
 
 /*
-Class having cunstructors, getters and setters
+Class having constructors, getters and setters
  */
-public class Hotels {
-    String hotelName;
-    int regularRates;
+class Hotels {
+    private String hotelName;
+    private int regularWeekdaysRates, regularWeekendRates;
+    private int rewardedWeekdaysRates, rewardedWeekendRates;
+    private int hotelRating;
 
-    public Hotels() {
+    public Hotels(String hotelName,int regularWeekdaysRates, int regularWeekendRates, int rewardedWeekdaysRates, int rewardedWeekendRates, int hotelRating) {
         this.hotelName = hotelName;
-        this.regularRates = regularRates;
+        this.regularWeekdaysRates = regularWeekdaysRates;
+        this.regularWeekendRates = regularWeekendRates;
+        this.rewardedWeekdaysRates = rewardedWeekdaysRates;
+        this.rewardedWeekendRates = rewardedWeekendRates;
+        this.hotelRating = hotelRating;
     }
 
     public String getHotelName() {
@@ -20,11 +26,48 @@ public class Hotels {
         this.hotelName = hotelName;
     }
 
-    public int getRegularRates() {
-        return regularRates;
+    public int getRegularWeekdaysRates() {
+        return regularWeekdaysRates;
     }
 
-    public void setRegularRates(int regularRates) {
-        this.regularRates = regularRates;
+    public void setRegularWeekdaysRates(int regularWeekdaysRates) {
+        this.regularWeekdaysRates = regularWeekdaysRates;
+    }
+
+    public int getRegularWeekendRates() {
+        return regularWeekendRates;
+    }
+
+    public void setRegularWeekendRates(int regularWeekendRates) {
+        this.regularWeekendRates = regularWeekendRates;
+    }
+
+    public int getRewardedWeekdaysRates() {
+        return rewardedWeekdaysRates;
+    }
+
+    public void setRewardedWeekdaysRates(int rewardedWeekdaysRates) {
+        this.rewardedWeekdaysRates = rewardedWeekdaysRates;
+    }
+
+    public int getRewardedWeekendRates() {
+        return rewardedWeekendRates;
+    }
+
+    public void setRewardedWeekendRates(int rewardedWeekendRates) {
+        this.rewardedWeekendRates = rewardedWeekendRates;
+    }
+
+    public int getHotelRating() {
+        return hotelRating;
+    }
+
+    public void setHotelRating(int hotelRating) {
+        this.hotelRating = hotelRating;
+    }
+
+    public String toString () {
+        return "Hotel Name- " +getHotelName()+
+                "\nHotel Rating- " +getHotelRating();
     }
 }
