@@ -20,7 +20,7 @@ class HotelTest {
 
     @Test
     void givenCustomerType_WhenCheck_ShouldReturnCheapestHotel() throws ParseException, HotelReservationExceptions {
-        HotelReservationSystemOperations obj = new HotelReservationSystemOperations();
+        CheapestHotel obj = new CheapestHotel();
         obj.addHotels();
         String result = obj.findCheapestHotel("rewarded", "10/12/2022", "10/12/2023");
         Assertions.assertTrue(result.equalsIgnoreCase("Ridgewood"));
