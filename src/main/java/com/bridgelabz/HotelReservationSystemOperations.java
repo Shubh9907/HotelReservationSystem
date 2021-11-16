@@ -28,7 +28,9 @@ public class HotelReservationSystemOperations {
         Date inDate = null;
         Date outDate = null;
         int bestRates = 0;
-        Hotels cheapest = hotelList.get(0);
+        boolean check = true;
+
+        Hotels cheapest = hotelList.get(0); // value at index 0 will assign to cheapest
 
         System.out.println("Enter 1 for Regular Customers\nEnter 2 for Rewarded Customers");
         int customerType = scan.nextInt();
@@ -38,14 +40,13 @@ public class HotelReservationSystemOperations {
         String checkOutDate = scan.next();
 
         if (Pattern.matches(DATE_PATTERN, checkInDate) && Pattern.matches(DATE_PATTERN, checkOutDate)) {
-            inDate = new SimpleDateFormat("dd/MM/yy").parse(checkInDate);
-            outDate = new SimpleDateFormat("dd/MM/yy").parse(checkOutDate);
+            inDate = new SimpleDateFormat("dd/MM/yy").parse(checkInDate); // Converts String in a Date
+            outDate = new SimpleDateFormat("dd/MM/yy").parse(checkOutDate); // Converts String in a Date
         }
-        boolean check = true;
 
         try {
             if (customerType == 1) {
-                if (inDate.getDay() == 6 || inDate.getDay() == 7) {
+                if (inDate.getDay() == 6 || inDate.getDay() == 7) {  // inDate.getDay() will return a day in integer
                     for (Hotels hotels : hotelList) {
                         if (cheapest.getRegularWeekendRates() > hotels.getRegularWeekendRates()) {
                             cheapest = hotels;
@@ -79,7 +80,7 @@ public class HotelReservationSystemOperations {
             } else {
                 System.out.println("Please Enter a valid Customer Type, Enter Again");
                 check = false;
-                findCheapestHotel();
+                findCheapestHotel(); 
             }
             if (check == true) {
                 System.out.println("The Cheapest hotel is:-\n" + cheapest.toString());

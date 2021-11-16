@@ -18,6 +18,10 @@ public class CheapestHotel {
         hotelList.add(new Hotels("Ridgewood", 220, 150, 100, 40, 5));
     }
 
+    /*
+    Method for find cheapest hotel for test case
+    return cheapest hotel name
+     */
     public String findCheapestHotel(String customerType, String checkInDate, String checkOutDate) throws ParseException, HotelReservationExceptions {
         final String DATE_PATTERN = "^[0-9]{2}[/][0-9]{2}[/][0-9]{4}$";
         Date inDate = null;
