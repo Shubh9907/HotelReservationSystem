@@ -24,13 +24,13 @@ public class HotelReservationSystemOperations {
     Method to find cheapest hotel in a given date range
      */
     public String findCheapestHotel() throws ParseException , HotelReservationExceptions , NullPointerException {
-        final String DATE_PATTERN = "^[0-2][0-9][/][0-1][0-2][/][0-9]{4}$"; // Regex Pattern for validation of dates
+        final String DATE_PATTERN = "^[0-2][0-9][/][0-1][0-9][/][0-9]{4}$"; // Regex Pattern for validation of dates
         Date inDate = null;
         Date outDate = null;
-        int bestRates = 0;
         boolean check = true;
 
         Hotels cheapest = hotelList.get(0); // value at index 0 will assign to cheapest
+        int bestRates = 0;
 
         System.out.println("Enter 1 for Regular Customers\nEnter 2 for Rewarded Customers");
         int customerType = scan.nextInt();
@@ -46,37 +46,58 @@ public class HotelReservationSystemOperations {
 
         try {
             if (customerType == 1) {
+                boolean flag = false;
                 if (inDate.getDay() == 6 || inDate.getDay() == 7) {  // inDate.getDay() will return a day in integer
                     for (Hotels hotels : hotelList) {
                         if (cheapest.getRegularWeekendRates() > hotels.getRegularWeekendRates()) {
+                            flag = true;
                             cheapest = hotels;
                             bestRates = cheapest.getRegularWeekendRates();
+                        }else {
+                            if (flag==false) {
+                                bestRates = cheapest.getRegularWeekendRates();
+                            }
                         }
                     }
                 } else {
+                    boolean flag1 = false;
                     for (Hotels hotels : hotelList) {
                         if (cheapest.getRegularWeekdaysRates() > hotels.getRegularWeekdaysRates()) {
+                            flag1=true;
                             cheapest = hotels;
                             bestRates = cheapest.getRegularWeekdaysRates();
+                        }else {
+                            if (flag1==false) {
+                                bestRates = cheapest.getRegularWeekdaysRates();
+                            }
                         }
                     }
                 }
             } else if (customerType == 2) {
+                boolean flag2 = false;
                 if (inDate.getDay() == 6 || inDate.getDay() == 7) {
                     for (Hotels hotels : hotelList) {
                         if (cheapest.getRewardedWeekendRates() > hotels.getRewardedWeekendRates()) {
                             cheapest = hotels;
+                            flag2 = true;
                             bestRates = cheapest.getRewardedWeekendRates();
+                        }else {
+                            if (flag2==false) bestRates = cheapest.getRewardedWeekendRates();
                         }
                     }
                 } else {
+                    boolean flag3 =false;
                     for (Hotels hotels : hotelList) {
                         if (cheapest.getRewardedWeekdaysRates() > hotels.getRewardedWeekdaysRates()) {
                             cheapest = hotels;
+                            flag3=true;
                             bestRates = cheapest.getRewardedWeekdaysRates();
+                        }else {
+                            if (flag3==false) bestRates = cheapest.getRewardedWeekdaysRates();
                         }
                     }
                 }
+                bestRates=cheapest.getRewardedWeekdaysRates();
             } else {
                 System.out.println("Please Enter a valid Customer Type, Enter Again");
                 check = false;
