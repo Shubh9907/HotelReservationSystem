@@ -21,7 +21,7 @@ public class HotelReservationSystemOperations {
     }
 
     /*
-    Method to find cheapest hotel in a given date range
+    Method to find the cheapest hotel in a given date range
      */
     public String findCheapestHotel() throws ParseException , HotelReservationExceptions , NullPointerException {
         final String DATE_PATTERN = "^[0-2][0-9][/][0-1][0-9][/][0-9]{4}$"; // Regex Pattern for validation of dates
