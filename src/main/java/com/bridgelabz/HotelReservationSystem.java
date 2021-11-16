@@ -8,7 +8,6 @@ public class HotelReservationSystem {
         HotelReservationSystemOperations operations = new HotelReservationSystemOperations();
 
         operations.addHotels();
-        operations.addHotels();
-        operations.findCheapestHotel("rewarded", "10/12/2022", "10/12/2023");
+        operations.findCheapestHotel("rewarded", "101/12/2022", "10/12/2023");
     }
 }
