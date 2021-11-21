@@ -1,13 +1,11 @@
 package com.bridgelabz;
 
-/*
-Class having constructors, getters and setters
- */
-class Hotels {
+public class Hotels {
     private String hotelName;
     private int regularWeekdaysRates, regularWeekendRates;
     private int rewardedWeekdaysRates, rewardedWeekendRates;
     private int hotelRating;
+    private int totalCost=0;
 
     public Hotels(String hotelName,int regularWeekdaysRates, int regularWeekendRates, int rewardedWeekdaysRates, int rewardedWeekendRates, int hotelRating) {
         this.hotelName = hotelName;
@@ -64,6 +62,14 @@ class Hotels {
 
     public void setHotelRating(int hotelRating) {
         this.hotelRating = hotelRating;
+    }
+
+    public void setTotalCost(int cost) {
+        this.totalCost=cost;
+    }
+
+    public int getTotalCost() {
+        return totalCost;
     }
 
     public String toString () {
