@@ -22,6 +22,7 @@ public class HotelReservationSystemOperations {
 
     /*
     Method to find the cheapest hotel in a given date range
+    @param customerType, checkInDate, checkOutDate
      */
     public String findCheapestHotel(String customerType, String checkInDate, String checkOutDate) throws ParseException, HotelReservationExceptions {
         final String DATE_PATTERN = "^[0-9]{2}[/][0-9]{2}[/][0-9]{4}$";
@@ -73,13 +74,16 @@ public class HotelReservationSystemOperations {
         }
     }
 
+    /*
+    Method to find cheapest best rated hotel
+     */
     public String bestRatedHotel() {
         try {
             int finalRate = cheapSortedList.get(0).getTotalCost();
             List<Hotels> newSortedList = cheapSortedList.stream().filter(hotel -> hotel.getTotalCost() == finalRate).collect(Collectors.toList());
             List<Hotels> sortedRateOrder = newSortedList.stream().sorted(Comparator.comparing(hotel -> hotel.getHotelRating())).collect(Collectors.toList());
             Hotels bestRatedHotel = sortedRateOrder.get(sortedRateOrder.size() - 1);
-            System.out.println("Total Cost:- " + bestRatedHotel.getTotalCost() + " Rate:- " + bestRatedHotel.getHotelRating());
+            System.out.println("Total Cost:- " + bestRatedHotel.getTotalCost() + " Hotel Rating:- " + bestRatedHotel.getHotelRating());
             return bestRatedHotel.getHotelName();
         } catch (NullPointerException e) {
             return null;
