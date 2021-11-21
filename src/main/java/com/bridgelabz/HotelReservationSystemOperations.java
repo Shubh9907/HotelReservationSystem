@@ -37,7 +37,7 @@ public class HotelReservationSystemOperations {
             if (customerType.equalsIgnoreCase("REGULAR")) {
                 for (Hotels hotels : hotelList) {
                     Date date = inDate;
-                    while (date.getDate() < outDate.getDate()) {
+                    while (date.getDate() < outDate.getDate() || date.getMonth() < outDate.getMonth()) {
                         if (date.getDay() == 6 || date.getDay() == 0) {
                             hotels.setTotalCost(hotels.getTotalCost() + hotels.getRegularWeekendRates());
                         } else hotels.setTotalCost(hotels.getTotalCost() + hotels.getRegularWeekdaysRates());
@@ -50,7 +50,7 @@ public class HotelReservationSystemOperations {
             } else if (customerType.equalsIgnoreCase("REWARDED")) {
                 for (Hotels hotels : hotelList) {
                     Date date = inDate;
-                    while (date.getDate() < outDate.getDate()) {
+                    while (date.getDate() < outDate.getDate() || date.getMonth()< outDate.getMonth()) {
                         if (date.getDay() == 6 || date.getDay() == 0) {
                             hotels.setTotalCost(hotels.getTotalCost() + hotels.getRewardedWeekendRates());
                         } else hotels.setTotalCost(hotels.getTotalCost() + hotels.getRewardedWeekdaysRates());
@@ -65,7 +65,7 @@ public class HotelReservationSystemOperations {
             }
             cheapSortedList = hotelList.stream().sorted(Comparator.comparing(hotel -> hotel.getTotalCost())).collect(Collectors.toList());
             Hotels Cheapest = cheapSortedList.get(0);
-            System.out.println("Total Cost is:- " +Cheapest.getTotalCost());
+            System.out.println("Total Cost is:- " + Cheapest.getTotalCost());
             return Cheapest.getHotelName();
         } catch (NullPointerException e) {
             System.out.println("Please Enter valid dates");
