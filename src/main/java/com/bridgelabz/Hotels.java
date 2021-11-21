@@ -1,5 +1,8 @@
 package com.bridgelabz;
 
+/*
+This class contains constructor, getters and setters
+ */
 public class Hotels {
     private String hotelName;
     private int regularWeekdaysRates, regularWeekendRates;
