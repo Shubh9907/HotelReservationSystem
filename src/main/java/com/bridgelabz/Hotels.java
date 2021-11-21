@@ -1,28 +1,79 @@
 package com.bridgelabz;
 
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Test;
+public class Hotels {
+    private String hotelName;
+    private int regularWeekdaysRates, regularWeekendRates;
+    private int rewardedWeekdaysRates, rewardedWeekendRates;
+    private int hotelRating;
+    private int totalCost=0;
 
-import java.text.ParseException;
-
-class HotelTest {
-
-    @Test
-    void givenFirstHotelName_WhenAddedToList_ShouldHaveTheDetails() {
-        boolean result = false;
-        HotelReservationSystemOperations obj = new HotelReservationSystemOperations();
-        int listSize = obj.hotelList.size();
-        if (listSize > 0) {
-            result = true;
-        }
-        Assertions.assertTrue(result);
+    public Hotels(String hotelName,int regularWeekdaysRates, int regularWeekendRates, int rewardedWeekdaysRates, int rewardedWeekendRates, int hotelRating) {
+        this.hotelName = hotelName;
+        this.regularWeekdaysRates = regularWeekdaysRates;
+        this.regularWeekendRates = regularWeekendRates;
+        this.rewardedWeekdaysRates = rewardedWeekdaysRates;
+        this.rewardedWeekendRates = rewardedWeekendRates;
+        this.hotelRating = hotelRating;
     }
 
-    @Test
-    void givenCustomerType_WhenCheck_ShouldReturnCheapestHotel() throws ParseException, HotelReservationExceptions {
-        HotelReservationSystemOperations obj = new HotelReservationSystemOperations();
-        obj.addHotels();
-        String result = obj.findCheapestHotel("rewarded", "10/12/2022", "10/12/2023");
-        Assertions.assertTrue(result.equalsIgnoreCase("Ridgewood"));
+    public String getHotelName() {
+        return hotelName;
+    }
+
+    public void setHotelName(String hotelName) {
+        this.hotelName = hotelName;
+    }
+
+    public int getRegularWeekdaysRates() {
+        return regularWeekdaysRates;
+    }
+
+    public void setRegularWeekdaysRates(int regularWeekdaysRates) {
+        this.regularWeekdaysRates = regularWeekdaysRates;
+    }
+
+    public int getRegularWeekendRates() {
+        return regularWeekendRates;
+    }
+
+    public void setRegularWeekendRates(int regularWeekendRates) {
+        this.regularWeekendRates = regularWeekendRates;
+    }
+
+    public int getRewardedWeekdaysRates() {
+        return rewardedWeekdaysRates;
+    }
+
+    public void setRewardedWeekdaysRates(int rewardedWeekdaysRates) {
+        this.rewardedWeekdaysRates = rewardedWeekdaysRates;
+    }
+
+    public int getRewardedWeekendRates() {
+        return rewardedWeekendRates;
+    }
+
+    public void setRewardedWeekendRates(int rewardedWeekendRates) {
+        this.rewardedWeekendRates = rewardedWeekendRates;
+    }
+
+    public int getHotelRating() {
+        return hotelRating;
+    }
+
+    public void setHotelRating(int hotelRating) {
+        this.hotelRating = hotelRating;
+    }
+
+    public void setTotalCost(int cost) {
+        this.totalCost=cost;
+    }
+
+    public int getTotalCost() {
+        return totalCost;
+    }
+
+    public String toString () {
+        return "Hotel Name- " +getHotelName()+
+                "\nHotel Rating- " +getHotelRating();
     }
 }

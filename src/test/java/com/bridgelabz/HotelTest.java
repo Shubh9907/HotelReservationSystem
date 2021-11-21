@@ -11,6 +11,7 @@ class HotelTest {
     void givenFirstHotelName_WhenAddedToList_ShouldHaveTheDetails() {
         boolean result = false;
         HotelReservationSystemOperations obj = new HotelReservationSystemOperations();
+        obj.addHotels();
         int listSize = obj.hotelList.size();
         if (listSize > 0) {
             result = true;
@@ -20,9 +21,9 @@ class HotelTest {
 
     @Test
     void givenCustomerType_WhenCheck_ShouldReturnCheapestHotel() throws ParseException, HotelReservationExceptions {
-        CheapestHotel obj = new CheapestHotel();
+        HotelReservationSystemOperations obj = new HotelReservationSystemOperations();
         obj.addHotels();
-        String result = obj.findCheapestHotel("rewarded", "10/12/2022", "10/12/2023");
-        Assertions.assertTrue(result.equalsIgnoreCase("Ridgewood"));
+        String result = obj.findCheapestHotel("REWARDED", "27/11/2021", "28/11/2021");
+        Assertions.assertEquals("Ridgewood",result);
     }
 }
